@@ -26,6 +26,7 @@ app.use(express.urlencoded({extended: true}))
 
 // Dependencies
 const session = require("express-session")
+const methodOverride = require("method-override")
 
 // Middleware
 app.use(
@@ -35,11 +36,18 @@ app.use(
     saveUninitialized: false,
   })
 )
+app.use(methodOverride("_method"))
 
 app.get("/", (req, res) => {
-    res.render("index.ejs", {
-      currentUser: req.session.currentUser,
-    })
+    if (req.session.currentUser) {
+      res.render("dashboard.ejs", {
+        currentUser: req.session.currentUser,
+      })
+    } else {
+      res.render("index.ejs", {
+        currentUser: req.session.currentUser,
+      })
+    }
   })
 const userController = require("./controllers/users")
 app.use("/users", userController)

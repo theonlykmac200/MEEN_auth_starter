@@ -45,7 +45,7 @@ sessionsRouter.post("/", (req, res) => {
             req.session.currentUser = foundUser
   
             // redirect back to our home page
-            res.send("Success")
+            res.redirect("/")
           } else {
             // if the passwords don't match
             res.send("Oops! Invalid credentials.")

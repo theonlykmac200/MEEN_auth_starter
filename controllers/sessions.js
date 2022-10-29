@@ -5,10 +5,18 @@ const sessionsRouter = express.Router()
 const User = require("../models/user.js")
 
 // New (login page)
+sessionsRouter.get("/new", (req, res) => {
+    res.render("sessions/new.ejs")
+  })
 
 // Delete (logout route)
+// Delete (logout route)
+sessionsRouter.delete("/", (req, res) => {
+    req.session.destroy((error) => {
+      res.redirect("/")
+    })
+  })
 
-// Create (login route)
 // Create (login route)
 sessionsRouter.post("/", (req, res) => {
     // Check for an existing user

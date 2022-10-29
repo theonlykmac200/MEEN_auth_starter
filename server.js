@@ -37,8 +37,10 @@ app.use(
 )
 
 app.get("/", (req, res) => {
-    res.render("index.ejs")
-})
+    res.render("index.ejs", {
+      currentUser: req.session.currentUser,
+    })
+  })
 const userController = require("./controllers/users")
 app.use("/users", userController)
 

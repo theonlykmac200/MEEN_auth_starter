@@ -6,7 +6,11 @@ const User = require("../models/user.js")
 
 
 
-// new (registration page)
+
+// New (registration page)
+userRouter.get("/new", (req, res) => {
+    res.render("users/new.ejs")
+  })
 
 // Create (registration route)
 userRouter.post("/", (req, res) => {

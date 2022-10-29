@@ -12,10 +12,10 @@ const User = require("../models/user.js")
 userRouter.post("/", (req, res) => {
     //overwrite the user password with the hashed password, then pass that in to our database
     req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
-  
+
     User.create(req.body, (error, createdUser) => {
-      res.send(createdUser)
+        res.redirect("/")
     })
-  })
+})
 //Export User Router
 module.exports = userRouter
